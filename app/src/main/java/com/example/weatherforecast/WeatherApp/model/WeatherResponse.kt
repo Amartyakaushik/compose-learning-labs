@@ -1,0 +1,25 @@
+package com.example.weatherforecast.WeatherApp.model
+
+data class WeatherResponse(
+    val name: String,          // "Delhi"
+    val weather: List<Weather>,
+    val main: Main,
+    val wind: Wind,
+    val sys: Sys
+)
+
+data class Main(
+    val temp: Double
+)
+
+data class Weather(
+    val main: String,
+    val description: String
+)
+data class Wind(
+    val speed: Double          // 3.17 m/s
+)
+
+data class Sys(
+    val country: String        // "IN"
+)

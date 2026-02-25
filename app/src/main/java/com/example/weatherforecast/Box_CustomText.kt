@@ -1,0 +1,162 @@
+package com.example.weatherforecast
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.DisableSelection
+import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.VerticalAlignmentLine
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.ParagraphStyle
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun Boxx(){
+    Box(modifier = Modifier
+        .fillMaxSize(),
+        contentAlignment = Alignment.Center){
+        Box(modifier = Modifier
+//            .width(100.dp)
+//            .height(100.dp)
+            .background(Color.Red)
+        ){
+            Box(modifier = Modifier
+                .width(50.dp)
+                .height(50.dp)
+                .background(Color.Green)
+                .horizontalScroll(rememberScrollState()))
+
+            Text(text = "Hello", fontSize = 40.sp)
+        }
+    }
+}
+
+//@Preview(showBackground = true)
+//@Composable
+//fun BoxPreview(){
+//    Boxx()
+//}
+
+@Composable
+fun customText(){
+    Column (modifier = Modifier
+        .fillMaxSize()
+        .background(
+            color = Color.Gray
+        ),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ){
+        Text(
+            buildAnnotatedString {
+                withStyle(style = ParagraphStyle(
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    lineHeight = 40.sp,
+
+                )){
+                    append("Hello ")
+                    withStyle(style = SpanStyle(
+                        color = Color.Red,
+                        fontSize = 40.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )){
+                        append("World")
+                    }
+                    }
+                }, color = Color.White
+        )
+    }
+}
+
+@Composable
+fun textSelection() {
+    SelectionContainer {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Gray),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Text(
+                text = "Amartya Kaushik",
+                textAlign = TextAlign.Center
+            )
+
+            DisableSelection {
+                Text(
+                    text = "Rajput",
+                    color = Color.Red,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+
+//@Composable
+//fun textSelection(){
+//    SelectionContainer {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .background(color = Color.Gray),
+//            horizontalAlignment = Alignment.CenterHorizontally,
+//            verticalArrangement = Arrangement.Center
+//        ) {
+//            Text(
+//                buildAnnotatedString{
+//                    withStyle(
+//                        style = ParagraphStyle(
+//                            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+//                        )
+//                    ){
+//                        append("Amartya Kaushik")
+//                        withStyle(style = SpanStyle(
+//                            color = Color.Red,
+//                        )) {
+//                            DisableSelection {
+//                                append("Rajput")
+//                            }
+//                        }
+////                        Text(text = "Amartya Kaushik", fontSize = 14.sp, color = Color.Black)
+////                            Text(text = "Rajput", fontSize = 14.sp, color = Color.Red)
+////                        }
+//                    }
+//                }
+//            )
+//        }
+//    }
+//}
+@Preview(showBackground = true)
+@Composable
+fun customTextPreview(){
+//    customText()
+
+    textSelection()
+}
