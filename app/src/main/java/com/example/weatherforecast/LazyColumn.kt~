@@ -1,0 +1,64 @@
+package com.example.weatherforecast
+
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.weatherforecast.repository.personRepository
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun LazyColumnn() {
+    val section = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+    val personRepository = personRepository()
+    val getAllData = personRepository.getAllData()
+    LazyColumn(
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier
+            .padding(top = 10.dp)
+    ) {
+//        itemsIndexed(items = getAllData) { index, person ->
+//            customPersonDetails(person = person)
+//        }
+        section.forEach { sec ->
+            stickyHeader {
+                Text(text = "Section $sec",
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .background(color = Color.DarkGray)
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    fontSize = 14.sp,
+                    color = Color.White,
+                    textAlign = TextAlign.Center)
+            }
+            items(10){
+                Text(text = "Item $it from section $sec",
+                    fontWeight = FontWeight.Normal,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .)
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LazyColumnPreview() {
+    LazyColumnn()
+}

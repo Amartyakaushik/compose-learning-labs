@@ -1,0 +1,8 @@
+package com.example.weatherforecast.model
+
+data class person(
+    val id : int,
+    val firstname : String,
+    val lastname : String,
+    val age : int
+)

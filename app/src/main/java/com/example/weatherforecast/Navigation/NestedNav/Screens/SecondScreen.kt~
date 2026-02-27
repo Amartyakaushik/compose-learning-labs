@@ -1,0 +1,54 @@
+package com.example.weatherforecast.Navigation.NestedNav.Screens
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+
+@Composable
+fun SecondScreen(
+    navController : NavController
+){
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            modifier = Modifier.clickable (
+                indication = rememberRipple(),
+                interactionSource = remember { MutableInteractionSource() }
+            ){
+                navController.navigate(NavScreen.Home.route){
+                    popUpTo(NavScreen.Home.route){
+                        inclusive = true
+                    }
+                }
+//                navController.popBackStack()
+            },
+            color = Color.Companion.Red,
+            text = "Second Screen",
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold,
+        )
+    }
+}
+
+@Preview
+@Composable
+fun SecondScreenPreview(){
+    SecondScreen(navController = rememberNavController())
+}
